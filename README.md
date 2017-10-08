@@ -283,4 +283,58 @@ React app (don't worry, since it's the first it'll be crappy...and that's ok!).
 
 ## Lifecycle methods
 
+As we saw, React takes advantage of your components implementing some "common"
+method, like `render`. There are quite a few more methods you can implement
+in your components that will be used by React -- let's call them lifecycle
+methods since they run at different stages of the component's lifecycle:
+
+* `componentWillMount()` which gets called [right before the component is mounted](https://jsfiddle.net/tLo5L7fr/)
+* `componentDidMount()` which gets called as soon as the component is mounted, but not rendered yet
+* ...
+
+React has quite a few lifecycle events, so I'd recommend exploring them [later on](https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1).
+For now, you only need to know that you can hook onto the component's lifecycle
+vie this methods.
+
+The only method I want to mention, for now, is `shouldComponentUpdate(nextProps, nextState)`,
+which allows you to decide whether the component should trigger a re-render when
+it receives new props (the parent changes) or new state (via `this.setState({...})`):
+
+``` jsx
+shouldComponentUpdate(nextProps, nextState) {
+  if (this.state.adminName === nextState.adminName) {
+    alert('avoided a re-render')
+    return false
+  }
+
+  return true
+}
+```
+
+You can see it in action [here](https://jsfiddle.net/2fyrw3hq/).
+
 ## Not only the web
+
+Last but not least, I'd like to stress on the fact that, in my opinion,
+ **React is an approach more than a library**: the idea is that you have
+re-usable components that a library (React) renders and manages, while you focus
+on how your components live & interact with each other -- a very powerful concept.
+
+Our examples run on the browser, but the React team has been working on renderers
+for mobile applications ([React Native](https://facebook.github.io/react-native/docs/getting-started.html))
+and VR browsers ([React VR](https://facebook.github.io/react-vr/)) among others.
+If you think about it, it doesn't sound surprising: at the end of the day what
+changes is how to render what's returned by the `render` method, but everything
+else (the component's lifecycle & inner workings) stays the same across platforms.
+
+## ...what now?
+
+We barely scratched the surface, but you should be good to go and build your
+first React app without knowing too much about internals and so on.
+
+A few pointers for the curious ones:
+
+* what's this weird XML in the `render` function? Meet [JSX](https://jsx.github.io/)!
+* re-rendering is sometimes expensive, so you should consider using [pure components](https://60devs.com/pure-component-in-react.html) and [immutable objects](https://github.com/facebook/immutable-js/wiki/Immutable-as-React-state)
+* [React's top-level API](https://reactjs.org/docs/react-api.html)
+* how to embed a component **inside** another component tag? Meet [this.props.children](https://learn.co/lessons/react-this-props-children)!
