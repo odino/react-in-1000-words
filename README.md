@@ -4,7 +4,7 @@ The goal of this guide is to be able to familiarize with ReactJS.
 You'd probably have a better time here by being already familiar with
 JS and ES6, but I wrote this small guide to be easily digested by anyone
 who has a bit of programming background. I won't go into the details of what
-JSX is, what id the virtual DOM and so on as these are left to the reader: the
+JSX is, what is the virtual DOM and so on as these are left to the reader: the
 main idea behind this tutorial is to be able to understand React's ideas and
 functionalities without having to take a deep dive.
 
@@ -87,8 +87,8 @@ class LoginForm extends React.Component {
 Now, don't worry about understanding what those `props` are -- we'll get back at
 it later on. For now the most important thing is to know that if we want to
 manage state in our component we should initialize a `state` property in the
-component and assign values there. If we want to change the state, we can use
-`this.setState({...})` and react will overwrite the existing state.
+component's constructor and assign values there. If we want to change the state, we can use
+`this.setState({...})` and react will patch the existing state.
 
 We can then use the state in our render function:
 
@@ -122,7 +122,7 @@ thus updating the UI. This is a very important concept in React: **when state
 changes, the component re-renders**. But hey, you can't just do `this.state.password = e.target.value`,
 as React forces you to use the `setState` method, so that it can "see" that the
 state has changed: if you were to update the state "directly", React would have
-no visibility of the change.
+no visibility on the change.
 
 Let's "finalize" our example by handling the submit action:
 
@@ -196,12 +196,10 @@ class MyView extends React.Component {
 ```
 
 Ouch, that was easy! In order to include components in other components you can
-simply "embed" them as HTML / XML tags.
-
-Ok so, we have [2 forms](https://jsfiddle.net/0cv3dgko/) now!
+simply "embed" them as HTML / XML tags: we have [2 forms](https://jsfiddle.net/0cv3dgko/) now!
 
 Now, you remember how I told you earlier to forget about those "props"? Let's
-get back at them!
+get back to them!
 
 Say that we wan't to make sure the UI tells the user the forms are for different
 users, we can "tag" our components with different attributes:
@@ -246,16 +244,17 @@ class LoginForm extends React.Component {
 
 https://jsfiddle.net/ycbe2vrs/
 
-Let's say the props are something we inherit from our parent components, whereas
-the state is something that belongs to the component only.
-As I said earlier, changing the state triggers s re-render of our component.
+Let's say the **props are something we inherit from our parent component**, whereas
+the **state is something that belongs to the component only**.
 
+As I said earlier, changing the state triggers a re-render of our component, but
 React is also smart enough to trigger a re-render when the props change, as it
-means that something has changed in our parent component:
+means that something has changed in our parent component and we should probably
+update the UI:
 
 ``` jsx
 class MyView extends React.Component {
-	constructor(props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -294,7 +293,7 @@ methods since they run at different stages of the component's lifecycle:
 
 React has quite a few lifecycle events, so I'd recommend exploring them [later on](https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1).
 For now, you only need to know that you can hook onto the component's lifecycle
-vie this methods.
+through these methods.
 
 The only method I want to mention, for now, is `shouldComponentUpdate(nextProps, nextState)`,
 which allows you to decide whether the component should trigger a re-render when
@@ -311,7 +310,10 @@ shouldComponentUpdate(nextProps, nextState) {
 }
 ```
 
-You can see it in action [here](https://jsfiddle.net/2fyrw3hq/).
+You can see it in action [here](https://jsfiddle.net/2fyrw3hq/). Why did I decide
+to mention it? Well, when you'll start building real-world apps you'll notice
+that avoiding re-renders, when possible, yields a good performance increase, and
+you'll get there mostly through `shouldComponentUpdate`.
 
 ## Not only the web
 
@@ -334,6 +336,7 @@ first React app without knowing too much about internals and so on.
 
 A few pointers for the curious ones:
 
+* a [primer on virtual DOM](https://www.codecademy.com/articles/react-virtual-dom), which is a great performance optimization React popularized
 * what's this weird XML in the `render` function? Meet [JSX](https://jsx.github.io/)!
 * re-rendering is sometimes expensive, so you should consider using [pure components](https://60devs.com/pure-component-in-react.html) and [immutable objects](https://github.com/facebook/immutable-js/wiki/Immutable-as-React-state)
 * [React's top-level API](https://reactjs.org/docs/react-api.html)
