@@ -309,8 +309,8 @@ first React app. A few pointers for the curious ones:
 
 
 ```
-pandoc README.md | lynx -stdin -dump | wc -w
-1272
+~/projects/react-in-1000-words$ pandoc README.md | lynx -stdin -dump | wc -w
+1273
 ```
 
 Ok, I cheated a bit...
