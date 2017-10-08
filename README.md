@@ -3,7 +3,7 @@
 The goal of this guide is to be able to familiarize with ReactJS.
 
 You'd probably have a better time here by being already familiar with
-JS and ES6, but I wrote this small guide to be easily digested by anyone
+JS and ES6, but I wrote this to be easily digested by anyone
 who has a bit of programming background.
 
 ## Intro
@@ -39,7 +39,7 @@ to keep track of what's happening in the UI.
 
 Let's add some silly validation on our login form, by making
 sure the user enters a password longer than 5 characters. To do so, React
-asks us to initialize our component with some "known" state:
+asks us to initialize our component with some initial state:
 
 ``` jsx
 class LoginForm extends React.Component {
@@ -60,7 +60,7 @@ them later on. For now the most important thing is to know that if we want to
 manage state in our component we should initialize a `state` property in the
 component's constructor and assign values there.
 
-If we want to change the state, we can use `this.setState({...})` and react will
+If we want to change the state, we can use `this.setState({...})` and React will
 patch the existing state:
 
 ``` jsx
@@ -89,7 +89,8 @@ As you see, we're now binding the value of the password field to `this.state.pas
 and, whenever the user types on the input, we update the state.
 
 When the state changes, React is smart enough to call the `render` method again,
-thus updating the UI. This is a very important concept in React: **when state
+thus updating the UI (try typing in [this fiddle](https://jsfiddle.net/rbvrkhxz/)).
+This is a very important concept in React: **when state
 changes, the component re-renders**.
 
 Note you can't just do `this.state.password = e.target.value`,
@@ -132,17 +133,17 @@ class LoginForm extends React.Component {
 
 As you see, you can define interactions with inline functions:
 
-```
+``` jsx
 onChange={e => this.setState({password: e.target.value})}
 ```
 
 as well as component methods:
 
-```
+``` jsx
 onSubmit={e => this.onSubmit(e)}
 ```
 
-The choice is really yours: the rule of thumb is that when the function is very
+The rule of thumb is that when the function is very
 small, you can "inline" it, else it's better to keep it "separate" for
 readability.
 
@@ -212,7 +213,7 @@ class LoginForm extends React.Component {
 }
 ```
 
-https://jsfiddle.net/ycbe2vrs/
+[Et voila!](https://jsfiddle.net/ycbe2vrs/)
 
 Let's say the **props are something we inherit from our parent component**
 (some sort of external initialization parameters), whereas
@@ -231,7 +232,7 @@ class MyView extends React.Component {
     }
 
     setTimeout(_ => {
-    	this.setState({adminName: 'chtulu'})
+    	this.setState({adminName: 'cthulhu'})
     }, 1000)
   }
 
@@ -256,7 +257,7 @@ in your components that will be used by React -- let's call them [lifecycle
 methods](https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1)
 since they run at different stages of the component's lifecycle.
 
-The only method I want to mention, for now, is `shouldComponentUpdate(nextProps, nextState)`,
+The only method I want to mention here is `shouldComponentUpdate(nextProps, nextState)`,
 which allows you to decide whether the component should trigger a re-render when
 it receives new props (the parent changes) or new state (via `this.setState({...})`):
 
@@ -285,7 +286,7 @@ React app: let me just add a couple more paragraphs to clarify some things.
 I'd like to stress on the fact that, in my opinion,
  **React is an approach more than a library**: the idea is that you have
 re-usable components that a library (React) renders and manages, while you focus
-on how your components live & interact with each other -- a very powerful concept.
+on how your components live & interact with each other.
 
 Our examples run on the browser, but the React team has been working on renderers
 for [mobile applications](https://facebook.github.io/react-native/docs/getting-started.html)
@@ -302,14 +303,14 @@ first React app. A few pointers for the curious ones:
 
 * a [primer on virtual DOM](https://www.codecademy.com/articles/react-virtual-dom), which is a great performance optimization React popularized
 * what's this weird XML in the `render` function? Meet [JSX](https://jsx.github.io/)!
-* re-rendering is sometimes expensive, so you should consider using [pure components](https://60devs.com/pure-component-in-react.html) and [immutable objects](https://github.com/facebook/immutable-js/wiki/Immutable-as-React-state)
 * [React's top-level API](https://reactjs.org/docs/react-api.html)
 * how to embed a component **inside** another component tag? Meet [this.props.children](https://learn.co/lessons/react-this-props-children)!
+* re-rendering is sometimes expensive, so you should consider using [pure components](https://60devs.com/pure-component-in-react.html) and [immutable objects](https://github.com/facebook/immutable-js/wiki/Immutable-as-React-state)
 
 
 ```
 pandoc README.md | lynx -stdin -dump | wc -w
-1271
+1272
 ```
 
 Ok, I cheated a bit...
