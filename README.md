@@ -140,16 +140,17 @@ onChange={e => this.setState({password: e.target.value})}
 as well as component methods:
 
 ``` jsx
-onSubmit={this.onSubmit}
+onSubmit={this.onSubmit }
 ```
 
-The differences between the 2 are subtle so don't worry about them now.
+The differences between the 2 are subtle -- don't worry about them now.
 
 ## Components altogether
 
-At the end of the day, you will want to integrate multiple components together
-to build your UI, so let's build a simple view that presents 2 login forms, one
-for regular users and one for the admin:
+To build your UI, you will want to integrate multiple components together.
+
+Let's build a simple view that presents 2 login forms, one for regular users and
+one for admins:
 
 ``` jsx
 class MyView extends React.Component {
@@ -279,7 +280,7 @@ your components. More on this in the links at the bottom of this guide.
 You are now equipped with enough to start writing your first
 React app: let me just add a couple more paragraphs to clarify some things.
 
-## Not only the web
+## Not only web
 
 I'd like to stress on the fact that, in my opinion,
  **React is an approach more than a library**: the idea is that you have
@@ -304,11 +305,13 @@ first React app. A few pointers for the curious ones:
 * [React's top-level API](https://reactjs.org/docs/react-api.html)
 * how to embed a component **inside** another component tag? Meet [this.props.children](https://learn.co/lessons/react-this-props-children)!
 * re-rendering is sometimes expensive, so you should consider using [pure components](https://60devs.com/pure-component-in-react.html) and [immutable objects](https://github.com/facebook/immutable-js/wiki/Immutable-as-React-state)
+* remember when I said the differences between using methods and inline functions
+is subtle? [This article](https://cdb.reacttraining.com/react-inline-functions-and-performance-bdff784f5578) will give you a good overview
 
 
 ```
 ~/projects/react-in-1000-words$ pandoc README.md | lynx -stdin -dump | wc -w
-1257
+1274
 ```
 
 Ok, I cheated a bit...
