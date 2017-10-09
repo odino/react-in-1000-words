@@ -121,7 +121,7 @@ class LoginForm extends React.Component {
 
   render() {    
     return (
-      <form onSubmit={e => this.onSubmit(e)}>
+      <form onSubmit={this.onSubmit}>
         <input type="text" />
         <input type="text" value={this.state.password} onChange={e => this.setState({password: e.target.value})} />
         <input type="submit" />
@@ -140,12 +140,10 @@ onChange={e => this.setState({password: e.target.value})}
 as well as component methods:
 
 ``` jsx
-onSubmit={e => this.onSubmit(e)}
+onSubmit={this.onSubmit}
 ```
 
-The rule of thumb is that when the function is very
-small, you can "inline" it, else it's better to keep it "separate" for
-readability.
+The differences between the 2 are subtle so don't worry about them now.
 
 ## Components altogether
 
@@ -310,7 +308,7 @@ first React app. A few pointers for the curious ones:
 
 ```
 ~/projects/react-in-1000-words$ pandoc README.md | lynx -stdin -dump | wc -w
-1273
+1257
 ```
 
 Ok, I cheated a bit...
